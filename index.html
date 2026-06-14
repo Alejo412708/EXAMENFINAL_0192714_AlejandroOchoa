@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Inventory & Waste Control / Sistema de Gestión de Inventario y Desperdicios</title>
+    <title>EXAMENFINAL_0192714_AlejandroOchoa</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
     <header>
-        <h1>Smart Inventory & Waste Control / Sistema de Gestión de Inventario y Desperdicios</h1>
-        <p class="subtitle">Problemática: Pérdidas financieras por falta de control de stock y productos vencidos</p>
+        <h1>Smart Inventory & Waste Control</h1>
+        <h2>Sistema de Gestión de Inventario y Desperdicios</h2>
+        <div class="student-info">
+            <p><strong>Student:</strong> Alejandro Ochoa | <strong>Code:</strong> 0192714</p>
+            <p class="subtitle">Problemática: Pérdidas financieras por quiebre de stock y mermas por productos vencidos</p>
+        </div>
     </header>
 
     <div class="container">
@@ -37,6 +41,10 @@
                 <label>Price / Precio Unitario ($):</label>
                 <input type="number" id="prodPrice" placeholder="Ej. 3500" min="0" required>
             </div>
+            <div class="form-group">
+                <label>Expiration Date / Fecha de Vencimiento:</label>
+                <input type="date" id="prodExpiry" required>
+            </div>
             
             <button type="button" class="btn" onclick="addProduct()">Add Product</button>
             <button type="button" class="btn btn-search" onclick="searchProduct()">Search</button>
@@ -53,7 +61,7 @@
                     <th>Product / Producto</th>
                     <th>Stock / Cantidad</th>
                     <th>Price / Precio</th>
-                    <th>Status / Estado</th>
+                    <th>Expiry / Vencimiento</th> <th>Status / Estado</th>
                     <th>Action / Acción</th>
                 </tr>
             </thead>
