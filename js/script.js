@@ -1,4 +1,4 @@
-// Base de datos simulada con fechas de ejemplo para las pruebas en tiempo real
+// Base de datos simulada
 let inventory = [
     { id: 1, name: "Arroz Integral", stock: 3, price: 4500, expiry: "2026-12-31" },
     { id: 2, name: "Leche Entera", stock: 12, price: 3800, expiry: "2026-06-01" }
@@ -19,7 +19,7 @@ function updateDashboard() {
         let stockBadge = "";
         let expiryBadge = "";
         
-        // 1. Evaluar Estado del Stock
+        // 1. Validar Stock
         if (product.stock === 0) {
             stockBadge = '<span class="badge badge-critical">Out of Stock</span>';
             alerts.push(`Critical: ¡El producto "${product.name}" está totalmente agotado!`);
@@ -30,7 +30,7 @@ function updateDashboard() {
             stockBadge = '<span class="badge badge-ok">In Stock</span>';
         }
 
-        // 2. Evaluar Estado de Vencimiento
+        // 2. Validar Vencimiento (Regla Eliminado)
         const expiryDate = new Date(product.expiry + "T00:00:00");
         if (expiryDate <= today) {
             expiryBadge = '<span class="badge badge-expired">ELIMINADO / EXPIRED</span>';
@@ -39,7 +39,7 @@ function updateDashboard() {
             expiryBadge = '<span class="badge badge-ok">Válido / Active</span>';
         }
 
-        // 3. Crear fila asignándole un ID dinámico a la fila para poder resaltarla después
+        // 3. Crear Fila con ID para el resaltado
         const row = document.createElement("tr");
         row.id = `row-${product.id}`; 
         row.innerHTML = `
@@ -92,11 +92,9 @@ function deleteProduct(id) {
     updateDashboard();
 }
 
-// NUEVA FUNCIÓN: Busca el producto por el campo de texto y resalta la fila en verde
 function searchProduct() {
     const searchName = document.getElementById("prodName").value.trim().toLowerCase();
     
-    // Limpiar resaltados previos antes de una nueva búsqueda
     inventory.forEach(p => {
         const r = document.getElementById(`row-${p.id}`);
         if(r) r.classList.remove("highlight-row");
@@ -107,21 +105,19 @@ function searchProduct() {
         return;
     }
     
-    // Buscar coincidencia
     const found = inventory.find(p => p.name.toLowerCase().includes(searchName));
     
     if (found) {
         const targetRow = document.getElementById(`row-${found.id}`);
         if (targetRow) {
-            targetRow.classList.add("highlight-row"); // Aplica el fondo verde
-            targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Hace scroll automático al producto
+            targetRow.classList.add("highlight-row");
+            targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     } else {
-        alert("No se encontró ningún producto con ese nombre en la tabla.");
+        alert("No se encontró ningún producto con ese nombre.");
     }
 }
 
-// NUEVA FUNCIÓN: Limpia el formulario y remueve los fondos verdes de la tabla
 function clearFormAndHighlights() {
     document.getElementById("inventoryForm").reset();
     inventory.forEach(p => {
@@ -130,10 +126,8 @@ function clearFormAndHighlights() {
     });
 }
 
-// NUEVA FUNCIÓN: Simula la redirección de compra a una página externa segura
 function buyProduct(name, price) {
     alert(`Redireccionando a la pasarela de pago para adquirir: ${name}`);
-    // Abre en una nueva pestaña un portal de pagos simulado (puedes cambiarlo por el link que gustes)
     window.open(`https://checkout.stripe.dev/preview?item=${encodeURIComponent(name)}&price=${price}`, '_blank');
 }
 
