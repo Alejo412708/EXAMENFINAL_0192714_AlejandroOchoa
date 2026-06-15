@@ -27,7 +27,7 @@
     </div>
 
     <div class="container">
-        <h3>Registro y Búsqueda / Registration & Search</h3>
+        <h3>➕ Registro de Productos / Product Registration</h3>
         <form id="inventoryForm">
             <div class="form-group">
                 <label>Product Name / Nombre del Producto:</label>
@@ -35,21 +35,29 @@
             </div>
             <div class="form-group">
                 <label>Current Stock / Cantidad en Stock:</label>
-                <input type="number" id="prodStock" placeholder="Ej. 10" min="0">
+                <input type="number" id="prodStock" placeholder="Ej. 10" min="0" required>
             </div>
             <div class="form-group">
                 <label>Price / Precio Unitario ($):</label>
-                <input type="number" id="prodPrice" placeholder="Ej. 3500" min="0">
+                <input type="number" id="prodPrice" placeholder="Ej. 3500" min="0" required>
             </div>
             <div class="form-group">
                 <label>Expiration Date / Fecha de Vencimiento:</label>
-                <input type="date" id="prodExpiry">
+                <input type="date" id="prodExpiry" required>
             </div>
-            
             <button type="button" class="btn" onclick="addProduct()">Add Product</button>
-            <button type="button" class="btn btn-search" onclick="searchProduct()">Search</button>
-            <button type="button" class="btn btn-danger" onclick="clearFormAndHighlights()">Clear Form</button>
+            <button type="reset" class="btn btn-danger">Clear Form</button>
         </form>
+    </div>
+
+    <div class="container search-box">
+        <h3>🔍 Módulo de Búsqueda / Product Search System</h3>
+        <div class="form-group">
+            <label>Search by Name / Buscar por Nombre:</label>
+            <input type="text" id="searchFieldName" placeholder="Escribe el nombre del producto que deseas buscar... (Ej. Arroz)">
+        </div>
+        <button type="button" class="btn btn-search" onclick="searchProduct()">Search Product</button>
+        <button type="button" class="btn btn-danger" onclick="clearHighlights()">Clear Search</button>
     </div>
 
     <div class="container">
