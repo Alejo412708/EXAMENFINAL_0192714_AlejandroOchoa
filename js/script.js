@@ -1,3 +1,4 @@
+// Base de datos simulada
 let inventory = [
     { id: 1, name: "Arroz Integral", stock: 3, price: 4500, expiry: "2026-12-31" },
     { id: 2, name: "Leche Entera", stock: 12, price: 3800, expiry: "2026-06-01" }
@@ -88,11 +89,9 @@ function deleteProduct(id) {
     updateDashboard();
 }
 
-// Lógica del nuevo cuadro de búsqueda independiente
 function searchProduct() {
     const searchName = document.getElementById("searchFieldName").value.trim().toLowerCase();
     
-    // Limpiar resaltados previos
     inventory.forEach(p => {
         const r = document.getElementById(`row-${p.id}`);
         if(r) r.classList.remove("highlight-row");
@@ -124,11 +123,10 @@ function clearHighlights() {
     });
 }
 
-// Redirección dinámica hacia tu otro repositorio de GitHub Pages
+// CORRECCIÓN DE LA URL REMOTA CON TU LINK VERIFICADO
 function redirectToPayment(name, price) {
     alert(`Procesando orden de compra para: ${name}. Redireccionando a la pasarela de pagos...`);
-    // OJO: Esta URL apunta directo al index.html de tu otro repositorio que configuraremos abajo
-    window.open(`https://alejo412708.github.io/Actividad-Integradora-CSS3/?item=${encodeURIComponent(name)}&price=${price}`, '_blank');
+    window.open(`https://alejo412708.github.io/css3p/?item=${encodeURIComponent(name)}&price=${price}`, '_blank');
 }
 
 updateDashboard();
